@@ -97,6 +97,7 @@ def binary_to_board(b):
         board.append(row)
     return board
 
+
 if __name__ == "__main__":
     board = [[0, 0, 0, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0],

@@ -1,3 +1,5 @@
 # connect4
 #Put comments here
-Todo List:
+
+Todo List: 
+Understand how to use Minimax and Beta Pruning

@@ -1,5 +1,5 @@
 import json
-
+import sys
 
 def check_for_win(b):
     # checks for horizontal win
@@ -94,33 +94,33 @@ def binary_to_board(b):
         board.append(row)
     return board
 
+if __name__ == "__main__":
+    board = [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0]]
 
-board = [[0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0]]
+    p_board(binary_to_board(board_to_binary(board)))
 
-p_board(binary_to_board(board_to_binary(board)))
+    print('\n')
+    board_db = dict()
 
-print('\n')
-board_db = dict()
+    count = 1
+    while check_for_win(board) == 0:
+        if count % 2 == 0:
+            p = 2
+        else:
+            p = 1
+        board_old = board
+        board = user_choice(board, p)
+        count += 1
+        add_to_db(board_to_binary(board_old), board_to_binary(board), board_db)
 
-count = 1
-while check_for_win(board) == 0:
-    if count % 2 == 0:
-        p = 2
-    else:
-        p = 1
-    board_old = board
-    board = user_choice(board, p)
-    count += 1
-    add_to_db(board_to_binary(board_old), board_to_binary(board), board_db)
+    print(board_db)
+    p_board(board)
+    print('Player {} wins congrats'.format(p))
 
-print(board_db)
-p_board(board)
-print('Player {} wins congrats'.format(p))
-
-with open('data.json', 'w') as outfile:
-    json.dump(board_db, outfile)
+    with open('data.json', 'w') as outfile:
+        json.dump(board_db, outfile)

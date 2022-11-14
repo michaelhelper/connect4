@@ -1,5 +1,5 @@
 import json
-import system
+import sys
 
 
 def check_for_win(b):

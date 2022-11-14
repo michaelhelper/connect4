@@ -28,7 +28,9 @@ def check_for_win(b):
     return 3
 
 
+
 def valid_moves(b):
+    
     moves = [None, None, None, None, None, None, None]
     new_moves = []
     for i in range(5, -1, -1):

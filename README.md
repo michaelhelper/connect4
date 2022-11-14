@@ -3,6 +3,3 @@
 
 Todo List: 
 Understand how to use Minimax and Beta Pruning
-
-
-111

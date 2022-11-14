@@ -3,3 +3,4 @@
 
 Todo List: 
 Understand how to use Minimax and Beta Pruning
+Michael helper

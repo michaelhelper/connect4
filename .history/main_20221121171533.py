@@ -59,19 +59,19 @@ def user_choice(b, player):
     b = update_board_pos(b, moves[choice], player)
     return b
 
-#Prints the current game board
+
 def p_board(b):
     for row in b:
         for col in row:
             print('{} '.format(col), end='')
         print('\n', end='')
 
-#Takes two positions and adds them to the board database
+
 def add_to_db(b1, b2, board_db):
     board_db[str(b1)] = b2
     return board_db
 
-#Converts an array board to a binary board
+
 def board_to_binary(b):
     b_binary = ''
     m_binary = ''
@@ -87,7 +87,7 @@ def board_to_binary(b):
                 m_binary += '0'
     return (b_binary, m_binary)
 
-#Converts a binary board to an array
+
 def binary_to_board(b):
     board = []
     for i in range(0, 36, 7):
@@ -97,11 +97,7 @@ def binary_to_board(b):
         board.append(row)
     return board
 
-#Checks if the current board position is in the database. If it is it returns the 'best' move
-def check_database(database, position):
-    if str(position) in database:
-        return database[str(position)]
-
+def check_database()
 if __name__ == "__main__":
     board = [[0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],

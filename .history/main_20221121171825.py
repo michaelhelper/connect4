@@ -59,14 +59,14 @@ def user_choice(b, player):
     b = update_board_pos(b, moves[choice], player)
     return b
 
-#Prints the current game board
+
 def p_board(b):
     for row in b:
         for col in row:
             print('{} '.format(col), end='')
         print('\n', end='')
 
-#Takes two positions and adds them to the board database
+#Takes two positions and adds them to the 
 def add_to_db(b1, b2, board_db):
     board_db[str(b1)] = b2
     return board_db

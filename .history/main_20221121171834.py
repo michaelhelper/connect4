@@ -59,7 +59,7 @@ def user_choice(b, player):
     b = update_board_pos(b, moves[choice], player)
     return b
 
-#Prints the current game board
+#
 def p_board(b):
     for row in b:
         for col in row:

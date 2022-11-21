@@ -59,19 +59,20 @@ def user_choice(b, player):
     b = update_board_pos(b, moves[choice], player)
     return b
 
-#Prints the current game board
+
 def p_board(b):
     for row in b:
         for col in row:
             print('{} '.format(col), end='')
         print('\n', end='')
 
-#Takes two positions and adds them to the board database
+
 def add_to_db(b1, b2, board_db):
-    board_db[str(b1)] = b2
+    print(board_db)
+    board_db[b1] = b2
     return board_db
 
-#Converts an array board to a binary board
+
 def board_to_binary(b):
     b_binary = ''
     m_binary = ''
@@ -87,7 +88,7 @@ def board_to_binary(b):
                 m_binary += '0'
     return (b_binary, m_binary)
 
-#Converts a binary board to an array
+
 def binary_to_board(b):
     board = []
     for i in range(0, 36, 7):
@@ -97,10 +98,6 @@ def binary_to_board(b):
         board.append(row)
     return board
 
-#Checks if the current board position is in the database. If it is it returns the 'best' move
-def check_database(database, position):
-    if str(position) in database:
-        return database[str(position)]
 
 if __name__ == "__main__":
     board = [[0, 0, 0, 0, 0, 0, 0],
@@ -110,31 +107,26 @@ if __name__ == "__main__":
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0]]
 
-    old_board = board 
+    p_board(binary_to_board(board_to_binary(board)))
+
     print('\n')
     board_db = dict()
-    count = 1
 
+    count = 1
     while check_for_win(board) == 0:
-        #Checks which players turn it is
         if count % 2 == 0:
             p = 2
         else:
             p = 1
-        #Updates the board with the users choice
         board = user_choice(board, p)
-
-        #Adds the board to the dictionary database 
-        add_to_db(board_to_binary(board), board_to_binary(old_board), board_db)
-        #Assigns the current board to the old board
-        old_board = board 
+        if count > 1:
+            add_to_db(, board, board_old)
+        board_old = board 
         count += 1
         
-    #prints the final board along with who won the game
+    print(board_db)
     p_board(board)
     print('Player {} wins congrats'.format(p))
 
-    #Saves the game data to a data.txt file to use as a future table base reference
-    data = open('data.txt', 'w')
-    data.write(json.dumps(board_db))
-    data.close()
+    with open('data.json', 'w') as outfile:
+        json.dumps(board_db, indent = 4) 

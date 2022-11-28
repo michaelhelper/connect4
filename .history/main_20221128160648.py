@@ -100,7 +100,7 @@ def check_database(database, position):
     if str(position) in database:
         return database[str(position)]
 
-#Checks if the play can win on the next move
+#Checks if 
 def immediate_win(board, player):
     for m in valid_moves(board):
         if 

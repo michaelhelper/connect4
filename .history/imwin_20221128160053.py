@@ -1,0 +1,1 @@
+def immediate_win(board, player, )

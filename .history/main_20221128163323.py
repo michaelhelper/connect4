@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/
 import json
 import asyncio
-import websockets
+from websockets import connect
 #import system
 
 
@@ -146,24 +146,24 @@ if __name__ == "__main__":
     data.write(json.dumps(board_db))
     data.close()
     '''
-    async def game_loop(uri):
-        async with websockets.connect(uri) as socket:
-            while True:
-                message = await socket.recv()
-                command, data = message.split(':')
-                if (command == 'ID'):
-                    print(data)
+    async def game_loop(socket):
+        while True:
+            message = await websocket.recv()
 
-    uri = None
+            command, data = message.split(':')
+
+            if (command == 'ID'):
+                print(data)
+    socket = None
     server = 'ws://' + input('Server IP: ').strip()
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
     
     if protocol == 'c':
-        uri = server + '/create'
+        socket = websocket.connect(server + '/create')
 
     else:
         game_id = input('Game id: ').strip()
-        uri = server + '/join/' + game_id
+        socket = websocket.connect(server + '/join/' + game_id)
 
-    asyncio.run(game_loop(uri))
+    game_loop(socket)
 

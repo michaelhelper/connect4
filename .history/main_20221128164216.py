@@ -147,7 +147,7 @@ if __name__ == "__main__":
     data.close()
     '''
     async def game_loop(uri):
-        async with websockets.connect(uri) as socket:
+        async with connect(uri) as socket:
             while True:
                 message = await socket.recv()
                 command, data = message.split(':')

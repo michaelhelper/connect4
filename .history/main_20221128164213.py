@@ -147,12 +147,12 @@ if __name__ == "__main__":
     data.close()
     '''
     async def game_loop(uri):
-        async with websockets.connect(uri) as socket:
-            while True:
-                message = await socket.recv()
-                command, data = message.split(':')
-                if (command == 'ID'):
-                    print(data)
+        async with connect(uri) as socket:
+        while True:
+            message = await socket.recv()
+            command, data = message.split(':')
+            if (command == 'ID'):
+                print(data)
 
     uri = None
     server = 'ws://' + input('Server IP: ').strip()

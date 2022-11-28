@@ -159,9 +159,9 @@ if __name__ == "__main__":
             async with websockets.connect(uri) as socket:
                 while True:
                     message = await socket.recv()
-                    command = message.split(':')
-                    if (command[0] == 'ID'):
-                        print(command[1])
+                    = message.split(':')
+                    if (command == 'ID'):
+                        print(data)
 
         uri = None
         server = 'ws://' + input('Server IP: ').strip()

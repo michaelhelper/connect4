@@ -161,7 +161,7 @@ if __name__ == "__main__":
                     message = await socket.recv()
                     command = message.split(':')
                     if (command[0] == 'ID'):
-                        print(command[1])
+                        print(data)
 
         uri = None
         server = 'ws://' + input('Server IP: ').strip()

@@ -161,6 +161,7 @@ if __name__ == "__main__":
                     message = await socket.recv()
                     command = message.split(':')
                     if (command[0] == 'ID'):
+                        if len()
                         print(command[1])
 
         uri = None

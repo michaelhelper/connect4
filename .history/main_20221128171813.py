@@ -155,7 +155,7 @@ if __name__ == "__main__":
     data.close()
     '''
     while True:
-        async def game_loop(uri, created):
+        async def game_loop(uri):
             async with websockets.connect(uri) as socket:
                 while True:
                     message = await socket.recv()
@@ -174,6 +174,6 @@ if __name__ == "__main__":
             game_id = input('Game id: ').strip()
             uri = server + '/join/' + game_id
 
-        asyncio.run(game_loop(uri, protocol == 'c'))
+        asyncio.run(game_loop(uri))
         
 

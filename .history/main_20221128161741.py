@@ -1,6 +1,6 @@
 import json
 import asyncio
-from websockets import connect
+import websockets
 #import system
 
 

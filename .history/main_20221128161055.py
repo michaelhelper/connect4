@@ -1,6 +1,6 @@
 import json
-import asyncio
-from websockets import connect
+import asyncio as
+impoert websockets
 #import system
 
 
@@ -143,13 +143,6 @@ if __name__ == "__main__":
     data = open('data.txt', 'w')
     data.write(json.dumps(board_db))
     data.close()
-
-    socket = None
-    server = input('Server IP: ').strip()
-    protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
-    
-    if protocol == 'c':
-        socket = websocket.connect
 
 
 

@@ -1,6 +1,6 @@
 import json
 import asyncio
-from websockets import connect
+from ebsockets
 #import system
 
 

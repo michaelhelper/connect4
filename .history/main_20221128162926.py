@@ -145,16 +145,9 @@ if __name__ == "__main__":
     data.write(json.dumps(board_db))
     data.close()
     '''
-    async def game_loop(socket):
-        while True:
-            message = await websocket.recv()
 
-            command, data = message.split(':')
-
-            if (command == 'ID'):
-                print(data)
     socket = None
-    server = 'ws://' + input('Server IP: ').strip()
+    server = input('Server IP: ').strip()
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
     
     if protocol == 'c':
@@ -164,5 +157,14 @@ if __name__ == "__main__":
         game_id = input('Game id: ').strip()
         socket = websocket.connect(server + '/join/' + game_id)
 
-    game_loop(socket)
+    gameloop(socket)
+    
+    async def gameloop (socket):
+        while True:
+            message = await websocket.recv()
+
+            command, data = message.split(':')
+
+            if (command == 'ID'):
+                print(data)
 

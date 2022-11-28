@@ -154,7 +154,7 @@ if __name__ == "__main__":
             if (command == 'ID'):
                 print(data)
     socket = None
-    server = 'ws://' + input('Server IP: ').strip()
+    server = input('Server IP: ').strip()
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
     
     if protocol == 'c':

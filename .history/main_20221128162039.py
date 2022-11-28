@@ -101,14 +101,13 @@ def binary_to_board(b):
 def check_database(database, position):
     if str(position) in database:
         return database[str(position)]
-'''
+
 #Checks if the play can win on the next move
 def immediate_win(board, player):
     for m in valid_moves(board):
         if 
-'''
+
 if __name__ == "__main__":
-    '''
     board = [[0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -144,25 +143,18 @@ if __name__ == "__main__":
     data = open('data.txt', 'w')
     data.write(json.dumps(board_db))
     data.close()
-    '''
-    async def game_loop(socket):
-        while True:
-            message = await websocket.recv()
 
-            command, data = message.split(':')
-
-            if (command == 'ID'):
-                print(data)
     socket = None
-    server = 'ws://' + input('Server IP: ').strip()
+    server = input('Server IP: ').strip()
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
     
     if protocol == 'c':
         socket = websocket.connect(server + '/create')
-
     else:
-        game_id = input('Game id: ').strip()
-        socket = websocket.connect(server + '/join/' + game_id)
+        gameid = input('Game id: ').strip()
+        socket = websocket.connect(server + '/join')
 
-    game_loop(socket)
+
+
+
 

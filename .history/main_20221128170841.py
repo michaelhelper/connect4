@@ -109,9 +109,8 @@ def immediate_win(board, player):
         new_b = update_board_pos(board, m, player)
         if check_for_win(new_b) == player:
             return True, m
-
 '''
-#Test case
+Test case
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -119,11 +118,13 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [2, 2, 2, 0, 0, 0, 0]]
 print(immediate_win(board, 2))
+
 '''
 
 
 
 if __name__ == "__main__":
+
     '''
     old_board = board 
     print('\n')

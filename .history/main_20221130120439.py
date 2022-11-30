@@ -121,9 +121,13 @@ def three_move_win(board, player):
 
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
+        #p_board(new_b)
+        #print('Next')
         c=0
         for a in valid_moves(new_b):
             new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
+            #p_board(new_bb)
+            #print('NNN')
             if check_for_win(new_bb) != o_player:
                 v_moves = valid_moves(new_bb)
                 for i in v_moves:

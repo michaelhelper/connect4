@@ -45,6 +45,7 @@ def valid_moves(b):
 
 
 def update_board_pos(b, move, player):
+    #print(b)
     b[move[0]][move[1]] = player
     return b
 
@@ -121,27 +122,29 @@ def three_move_win(board, player):
 
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
-        c=0
+        p_board(new_b)
+        print('Next')
         for a in valid_moves(new_b):
             new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
+            print()
             if check_for_win(new_bb) != o_player:
+                c = 0
                 v_moves = valid_moves(new_bb)
                 for i in v_moves:
                     new_bbb = update_board_pos(copy.deepcopy(new_bb), i, player)
                     if check_for_win(new_bbb) == player:
                         c += 1
-                        break
-        if c == len(valid_moves(new_b)):
-            return m
+                        if c == len(v_moves):
+                            return True, m, a, i
     
 
 #Test case
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 0, 2, 0, 0, 0],
-        [2, 1, 2, 1, 0, 0, 0],
-        [1, 2, 1, 2, 0, 0, 0]]
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 2, 2, 0, 0, 0]]
 print(three_move_win(board, 2))
 
 

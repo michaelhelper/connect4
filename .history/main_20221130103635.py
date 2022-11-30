@@ -2,7 +2,6 @@
 import json
 import asyncio
 import websockets
-import copy
 #import system
 
 
@@ -31,20 +30,30 @@ def check_for_win(b):
             return 0
     return 3
 
-
-
+for i in range(5, -1, -1):
+    print(i)
 def valid_moves(b):
-    n_moves = []
-    moves = [None, None, None, None, None, None, None]
+    moves = []
     for i in range(5, -1, -1):
         for a in range(7):
-            if moves[a] is None and b[i][a] == 0:
-                moves[a] = (i, a)
-                n_moves.append((i,a))
-    return n_moves
+            if b[i][a] == 0:
+                moves.append((i, a))
+                break
+    print(moves)
+    return moves
+
+board = [[0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 0, 0, 0],
+        [0, 0, 2, 2, 0, 0, 0]]
+print(valid_moves(board))
+print()
 
 
 def update_board_pos(b, move, player):
+    #print(b)
     b[move[0]][move[1]] = player
     return b
 
@@ -120,29 +129,29 @@ def three_move_win(board, player):
         o_player = 2
 
     for m in valid_moves(board):
-        new_b = update_board_pos(copy.deepcopy(board), m, player)
-        c=0
+        new_b = update_board_pos(board, m, player)
         for a in valid_moves(new_b):
-            new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
+            new_bb = update_board_pos(new_b, a, o_player)
             if check_for_win(new_bb) != o_player:
+                c = 0
                 v_moves = valid_moves(new_bb)
                 for i in v_moves:
-                    new_bbb = update_board_pos(copy.deepcopy(new_bb), i, player)
+                    print(new_bb, i)
+                    new_bbb = update_board_pos(new_bb, i, player)
                     if check_for_win(new_bbb) == player:
                         c += 1
-                        break
-        if c == len(valid_moves(new_b)):
-            return m
+                        if c == len(v_moves):
+                            return True, m, a, i
     
 
 #Test case
 board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 0, 2, 0, 0, 0],
-        [2, 1, 2, 1, 0, 0, 0],
-        [1, 2, 1, 2, 0, 0, 0]]
-print(three_move_win(board, 2))
+        [0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 1, 2, 2],
+        [0, 0, 0, 1, 2, 1, 1],
+        [0, 2, 1, 1, 2, 2, 2],
+        [0, 0, 2, 1, 2, 1, 1]]
+#print(three_move_win(board, 2))
 
 
 

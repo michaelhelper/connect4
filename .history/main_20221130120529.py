@@ -134,7 +134,6 @@ def three_move_win(board, player):
         if c == len(valid_moves(new_b)):
             return m
     
-    
 #Test case
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],

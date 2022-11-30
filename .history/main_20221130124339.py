@@ -153,15 +153,15 @@ def five_move_win(board, player):
         new_b1 = update_board_pos(copy.deepcopy(board), m, player)
         c=0
         for a in valid_moves(new_b1):
-            new_b2 = update_board_pos(copy.deepcopy(new_b1), a, o_player)
-            if check_for_win(new_b2) != o_player:
-                v_moves = valid_moves(new_b2)
+            new_bb = update_board_pos(copy.deepcopy(new_b1), a, o_player)
+            if check_for_win(new_bb) != o_player:
+                v_moves = valid_moves(new_bb)
                 for i in v_moves:
-                    new_b3 = update_board_pos(copy.deepcopy(new_b2), i, player)
-                    if check_for_win(new_b3) == player:
+                    new_bbb = update_board_pos(copy.deepcopy(new_bb2), i, player)
+                    if check_for_win(new_bbb) == player:
                         c += 1
                         break
-        if c == len(valid_moves(new_b1)):
+        if c == len(valid_moves(new_b)):
             return m
 
 

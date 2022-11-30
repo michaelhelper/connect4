@@ -161,7 +161,7 @@ def five_move_win(board, player):
                     if check_for_win(new_b3) == player:
                         c += 1
                         break
-        if c == len(valid_moves(new_b1)):
+        if c == len(valid_moves(new_b)):
             return m
 
 

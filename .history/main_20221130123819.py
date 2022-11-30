@@ -143,26 +143,8 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [1, 2, 1, 2, 0, 0, 0]]
 print(three_move_win(board, 2))
 
-def five_move_win(board, player):
-    if player == 2:
-        o_player = 1
-    else:
-        o_player = 2
+def five_move_win()
 
-    for m in valid_moves(board):
-        new_b1 = update_board_pos(copy.deepcopy(board), m, player)
-        c=0
-        for a in valid_moves(new_b1):
-            new_b2 = update_board_pos(copy.deepcopy(new_b1), a, o_player)
-            if check_for_win(new_b2) != o_player:
-                v_moves = valid_moves(new_b2)
-                for i in v_moves:
-                    new_b3 = update_board_pos(copy.deepcopy(new_b2), i, player)
-                    if check_for_win(new_b3) == player:
-                        c += 1
-                        break
-        if c == len(valid_moves(new_b1)):
-            return m
 
 
 if __name__ == "__main__":

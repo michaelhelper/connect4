@@ -134,13 +134,7 @@ def three_move_win(board, player):
         if c == len(valid_moves(new_b)):
             return m
     
-#Test case
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 0, 2, 0, 0, 0],
-        [2, 1, 2, 1, 0, 0, 0],
-        [1, 2, 1, 2, 0, 0, 0]]
+
 #print(three_move_win(board, 2))
 
 def five_move_win(board, player):
@@ -195,16 +189,38 @@ if __name__ == "__main__":
     data = open('data.txt', 'w')
     data.write(json.dumps(board_db))
     data.close()
-    ''''''
-    '''
     
+    '''
+
+    # Test case
+    board = [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0]]
     async def game_loop(uri, created):
+        if created:
+            self = 1
+            other = 2
+        else:
+            self = 2
+            other = 1
+
         async with websockets.connect(uri) as socket:
             while True:
                 message = await socket.recv()
+                print(message)
                 command = message.split(':')
+
                 if (command[0] == 'ID'):
                     print(command[1])
+                elif (command[0] == "GAMESTART" or command[0] == "OPPONENT"):
+                    update_board_pos(board, command[1], other)
+                    p_board(board)
+                    move = 3
+                    await socket.send(f'Play{move}')
+
 
     uri = None
     server = 'ws://' + input('Server IP: ').strip()

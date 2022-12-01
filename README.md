@@ -4,3 +4,4 @@
 Todo List: 
 Understand how to use Minimax and Beta Pruning
 Michael Helper
+npm run server/client

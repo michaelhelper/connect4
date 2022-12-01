@@ -215,6 +215,6 @@ if __name__ == "__main__":
 
     else:
         game_id = input('Game id: ').strip()
-        uri = server + '/join/' + game_id
+            uri = server + '/join/' + game_id
 
-    asyncio.run(game_loop(uri, protocol == 'c'))
+        asyncio.run(game_loop(uri, protocol == 'c'))

@@ -211,10 +211,10 @@ if __name__ == "__main__":
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
     
     if protocol == 'c':
-        uri = server + '/create'
+            uri = server + '/create'
 
-    else:
-        game_id = input('Game id: ').strip()
-        uri = server + '/join/' + game_id
+        else:
+            game_id = input('Game id: ').strip()
+            uri = server + '/join/' + game_id
 
-    asyncio.run(game_loop(uri, protocol == 'c'))
+        asyncio.run(game_loop(uri, protocol == 'c'))

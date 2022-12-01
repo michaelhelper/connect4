@@ -141,7 +141,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 2, 0, 2, 0, 0, 0],
         [2, 1, 2, 1, 0, 0, 0],
         [1, 2, 1, 2, 0, 0, 0]]
-#print(three_move_win(board, 2))
+print(three_move_win(board, 2))
 
 def five_move_win(board, player):
     if player == 2:
@@ -166,7 +166,7 @@ def five_move_win(board, player):
 
 
 if __name__ == "__main__":
-    '''
+    
     old_board = board 
     print('\n')
     board_db = dict()
@@ -195,26 +195,28 @@ if __name__ == "__main__":
     data = open('data.txt', 'w')
     data.write(json.dumps(board_db))
     data.close()
-    ''''''
     '''
-    
-    async def game_loop(uri, created):
-        async with websockets.connect(uri) as socket:
-            while True:
-                message = await socket.recv()
-                command = message.split(':')
-                if (command[0] == 'ID'):
-                    print(command[1])
+    '''
+    while True:
+        async def game_loop(uri, created):
+            async with websockets.connect(uri) as socket:
+                while True:
+                    message = await socket.recv()
+                    command = message.split(':')
+                    if (command[0] == 'ID'):
+                        print(command[1])
 
-    uri = None
-    server = 'ws://' + input('Server IP: ').strip()
-    protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
-    
-    if protocol == 'c':
-        uri = server + '/create'
+        uri = None
+        server = 'ws://' + input('Server IP: ').strip()
+        protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
+        
+        if protocol == 'c':
+            uri = server + '/create'
 
-    else:
-        game_id = input('Game id: ').strip()
-        uri = server + '/join/' + game_id
+        else:
+            game_id = input('Game id: ').strip()
+            uri = server + '/join/' + game_id
 
-    asyncio.run(game_loop(uri, protocol == 'c'))
+        asyncio.run(game_loop(uri, protocol == 'c'))
+        '''
+

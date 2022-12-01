@@ -203,18 +203,18 @@ if __name__ == "__main__":
             while True:
                 message = await socket.recv()
                 command = message.split(':')
-                if (command[0] == 'ID'):
-                    print(command[1])
+                    if (command[0] == 'ID'):
+                        print(command[1])
 
-    uri = None
-    server = 'ws://' + input('Server IP: ').strip()
-    protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
-    
-    if protocol == 'c':
-        uri = server + '/create'
+        uri = None
+        server = 'ws://' + input('Server IP: ').strip()
+        protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
+        
+        if protocol == 'c':
+            uri = server + '/create'
 
-    else:
-        game_id = input('Game id: ').strip()
-        uri = server + '/join/' + game_id
+        else:
+            game_id = input('Game id: ').strip()
+            uri = server + '/join/' + game_id
 
-    asyncio.run(game_loop(uri, protocol == 'c'))
+        asyncio.run(game_loop(uri, protocol == 'c'))

@@ -46,6 +46,7 @@ def valid_moves(b):
 
 def update_board_pos(b, move, player):
     b[move[0]][move[1]] = player
+
     return b
 
 
@@ -69,6 +70,7 @@ def p_board(b):
         for col in row:
             print('{} '.format(col), end='')
         print('\n', end='')
+    print()
 
 #Takes two positions and adds them to the board database
 def add_to_db(b1, b2, board_db):
@@ -160,6 +162,7 @@ def five_move_win(board, player):
 
 
 if __name__ == "__main__":
+
     '''
     old_board = board 
     print('\n')
@@ -192,14 +195,15 @@ if __name__ == "__main__":
     
     '''
 
-    # Test case
-    board = [[0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0],
-             [0, 0, 0, 0, 0, 0, 0]]
+
     async def game_loop(uri, created):
+        # Test case
+        board = [[0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0]]
         if created:
             self = 1
             other = 2
@@ -210,16 +214,23 @@ if __name__ == "__main__":
         async with websockets.connect(uri) as socket:
             while True:
                 message = await socket.recv()
-                print(message)
+                print(message, flush=True)
                 command = message.split(':')
 
                 if (command[0] == 'ID'):
                     print(command[1])
-                elif (command[0] == "GAMESTART" or command[0] == "OPPONENT"):
-                    update_board_pos(board, command[1], other)
+                elif ((command[0] == "GAMESTART" and created) or command[0] == "OPPONENT"):
+                    for move in valid_moves(board):
+                        if move[1] == int(command[1]):
+                            board = update_board_pos(board, move, other)
                     p_board(board)
                     move = 3
-                    await socket.send(f'Play{move}')
+                    for m in valid_moves(board):
+                        if m[1] == move:
+                            board = update_board_pos(board, m, other)
+                            p_board(board)
+                    await socket.send(f'Play:{move}')
+
 
 
     uri = None

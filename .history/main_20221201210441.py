@@ -250,7 +250,7 @@ def find_a_move(board, player, other):
     five_win = five_move_win(copy.deepcopy(board), player)
     if five_win:
         return five_win[1]
-    #print(4)
+    print(4)
     # Checks if the other player can win in five moves if we don't block
     o_five_win = five_move_win(copy.deepcopy(board), other)
     if o_five_win:

@@ -43,24 +43,13 @@ def valid_moves(b):
                 n_moves.append((i,a))
     return n_moves
 
-# Test case
-'''
-b = [[1, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0],
-        [2, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0],
-        [2, 0, 0, 0, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0]]
-print(valid_moves(b))
-'''
 
-#Updates the board with a move
 def update_board_pos(b, move, player):
     b[move[0]][move[1]] = player
+
     return b
 
 
-#Asks the user for a move and updates the board based on the given move
 def user_choice(b, player):
     moves = valid_moves(b)
     p_board(b)
@@ -120,31 +109,26 @@ def check_database(database, position):
         return database[str(position)]
 
 #!Added
-# Checks if the play can win on the next move
+#Checks if the play can win on the next move
 def immediate_win(board, player):
     for m in valid_moves(board):
-        new_b = update_board_pos(copy.deepcopy(board), m, player)
+        new_b = update_board_pos(board, m, player)
         if check_for_win(new_b) == player:
-            p_board(new_b)
             return m
-
 #!Added
-# Checks if the player can win in three moves
 def three_move_win(board, player):
     if player == 2:
         o_player = 1
     else:
         o_player = 2
-    # First branch
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
         c=0
-        # Second branch
         for a in valid_moves(new_b):
             new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
             if check_for_win(new_bb) != o_player:
-                # Third branch
-                for i in valid_moves(new_bb):
+                v_moves = valid_moves(new_bb)
+                for i in v_moves:
                     new_bbb = update_board_pos(copy.deepcopy(new_bb), i, player)
                     if check_for_win(new_bbb) == player:
                         c += 1
@@ -154,129 +138,38 @@ def three_move_win(board, player):
     
 
 #print(three_move_win(board, 2))
-#! IDK if it works
-def five_move_win(board, player, best=False):
-    max_m = 0
-    best_m = None
+#Not done yet
+def five_move_win(board, player):
     if player == 2:
         o_player = 1
     else:
         o_player = 2
-    # Creates first branch of boards
+
     for m in valid_moves(board):
-        c=0
         new_b1 = update_board_pos(copy.deepcopy(board), m, player)
-        # Creates second branch of boards
+        c=0
         for a in valid_moves(new_b1):
             new_b2 = update_board_pos(copy.deepcopy(new_b1), a, o_player)
             if check_for_win(new_b2) != o_player:
-                # Creates third branch of boards
-                for i in valid_moves(new_b2):
-                    c2=0
+                v_moves = valid_moves(new_b2)
+                for i in v_moves:
                     new_b3 = update_board_pos(copy.deepcopy(new_b2), i, player)
-                    # Creates fourth branch of boards
-                    for o in valid_moves(new_b3):
-                        new_b4 = update_board_pos(copy.deepcopy(new_b3), o, o_player)
-                        if check_for_win(new_b4) != o_player:
-                            # Creates fifth branch of boards
-                            for z in valid_moves(new_b4):
-                                new_b5 = update_board_pos(copy.deepcopy(new_b4), z, player)
-                                if check_for_win(new_b5) == player:
-                                    c2 += 1
-                                    break
-                    if c2 == len(valid_moves(new_b3)):
+                    if check_for_win(new_b3) == player:
                         c += 1
                         break
-        if c >= len(valid_moves(new_b1)):
+        if c == len(valid_moves(new_b1)):
             return m
-        if best == True and c > max_m:
-            
-            best_m = m
-            max_m = c
-    if best == True:
-        return best_m
 
-# Test case Should return 1
-'''
-board = [[0, 0, 0, 0, 2, 0, 0],
-        [0, 0, 0, 2, 1, 0, 0],
-        [0, 0, 0, 1, 2, 0, 0],
-        [0, 2, 0, 1, 1, 0, 0],
-        [0, 1, 0, 1, 2, 2, 0],
-        [0, 2, 1, 2, 2, 1, 0]]
-print('Move',five_move_win(board, 1))
-
-# Test case Should return 1,2
-
-board = [[0, 0, 0, 1, 1, 0, 0],
-        [2, 0, 0, 2, 2, 0, 0],
-        [1, 0, 0, 1, 2, 0, 0],
-        [2, 0, 2, 1, 1, 0, 0],
-        [1, 2, 1, 1, 2, 1, 0],
-        [2, 2, 1, 2, 2, 1, 2]]
-print('Move',five_move_win(board, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0]]
-print('Move',five_move_win(board, 1))
-'''
-#! We should still build a partial database and check it first.
-# Calls multiple method to try and find the best move
-def find_a_move(board, player, other):
+def find_a_move(board, player):
     # Checks for immediate win
-    im_win = immediate_win(copy.deepcopy(board), player)
+    im_win = immediate_win(board, player)
     if im_win:
         return im_win[1]
-    print(1)
-    # Checks if the other player can win if we don't block
-    o_im_win = immediate_win(copy.deepcopy(board), other)
-    if o_im_win:
-        return o_im_win[1]
-    print(2)
     # Checks for three move win
-    three_win = three_move_win(copy.deepcopy(board), player)
+    three_win = three_move_win(board, player)
     if three_win:
-        return three_win[1]
-    print(3)
-    # Checks if the other player can win in 3 moves if we don't block
-    o_three_win = three_move_win(copy.deepcopy(board), other)
-    if o_three_win:
-        return o_three_win[1]
-    # Checks for five move win
-    five_win = five_move_win(copy.deepcopy(board), player)
-    if five_win:
-        return five_win[1]
-    print(4)
-    # Checks if the other player can win in five moves if we don't block
-    o_five_win = five_move_win(copy.deepcopy(board), other)
-    if o_five_win:
-        return o_five_win[1]
-    #Last resort returns the highest performing move
-    return five_move_win(copy.deepcopy(board), player, True)[1]
 
 
-# Test case Should return 3
-'''
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 2, 1, 2, 0, 0],
-        [1, 2, 1, 1, 2, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
-'''
 
 if __name__ == "__main__":
 
@@ -341,7 +234,7 @@ if __name__ == "__main__":
                         if move[1] == int(command[1]):
                             board = update_board_pos(board, move, other)
                     p_board(board)
-                    move = find_a_move(board, self, other)
+                    move = 3
                     for m in valid_moves(board):
                         if m[1] == move:
                             board = update_board_pos(board, m, other)

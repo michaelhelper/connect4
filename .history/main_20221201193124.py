@@ -135,15 +135,12 @@ def three_move_win(board, player):
         o_player = 1
     else:
         o_player = 2
-    # First branch
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
         c=0
-        # Second branch
         for a in valid_moves(new_b):
             new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
             if check_for_win(new_bb) != o_player:
-                # Third branch
                 for i in valid_moves(new_bb):
                     new_bbb = update_board_pos(copy.deepcopy(new_bb), i, player)
                     if check_for_win(new_bbb) == player:
@@ -154,77 +151,35 @@ def three_move_win(board, player):
     
 
 #print(three_move_win(board, 2))
-#! IDK if it works
-def five_move_win(board, player, best=False):
-    max_m = 0
-    best_m = None
+#Not done yet
+def five_move_win(board, player):
     if player == 2:
         o_player = 1
     else:
         o_player = 2
     # Creates first branch of boards
     for m in valid_moves(board):
-        c=0
         new_b1 = update_board_pos(copy.deepcopy(board), m, player)
+        c=0
         # Creates second branch of boards
         for a in valid_moves(new_b1):
             new_b2 = update_board_pos(copy.deepcopy(new_b1), a, o_player)
             if check_for_win(new_b2) != o_player:
                 # Creates third branch of boards
                 for i in valid_moves(new_b2):
-                    c2=0
                     new_b3 = update_board_pos(copy.deepcopy(new_b2), i, player)
                     # Creates fourth branch of boards
                     for o in valid_moves(new_b3):
                         new_b4 = update_board_pos(copy.deepcopy(new_b3), o, o_player)
                         if check_for_win(new_b4) != o_player:
-                            # Creates fifth branch of boards
+                            v_moves_2 = valid_moves(new_b4)
+                            # Creates third branch of boards
                             for z in valid_moves(new_b4):
                                 new_b5 = update_board_pos(copy.deepcopy(new_b4), z, player)
-                                if check_for_win(new_b5) == player:
-                                    c2 += 1
-                                    break
-                    if c2 == len(valid_moves(new_b3)):
-                        c += 1
-                        break
-        if c >= len(valid_moves(new_b1)):
+
+        if c == len(valid_moves(new_b1)):
             return m
-        if best == True and c > max_m:
-            
-            best_m = m
-            max_m = c
-    if best == True:
-        return best_m
 
-# Test case Should return 1
-'''
-board = [[0, 0, 0, 0, 2, 0, 0],
-        [0, 0, 0, 2, 1, 0, 0],
-        [0, 0, 0, 1, 2, 0, 0],
-        [0, 2, 0, 1, 1, 0, 0],
-        [0, 1, 0, 1, 2, 2, 0],
-        [0, 2, 1, 2, 2, 1, 0]]
-print('Move',five_move_win(board, 1))
-
-# Test case Should return 1,2
-
-board = [[0, 0, 0, 1, 1, 0, 0],
-        [2, 0, 0, 2, 2, 0, 0],
-        [1, 0, 0, 1, 2, 0, 0],
-        [2, 0, 2, 1, 1, 0, 0],
-        [1, 2, 1, 1, 2, 1, 0],
-        [2, 2, 1, 2, 2, 1, 2]]
-print('Move',five_move_win(board, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0]]
-print('Move',five_move_win(board, 1))
-'''
-#! We should still build a partial database and check it first.
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
@@ -246,18 +201,6 @@ def find_a_move(board, player, other):
     o_three_win = three_move_win(copy.deepcopy(board), other)
     if o_three_win:
         return o_three_win[1]
-    # Checks for five move win
-    five_win = five_move_win(copy.deepcopy(board), player)
-    if five_win:
-        return five_win[1]
-    print(4)
-    # Checks if the other player can win in five moves if we don't block
-    o_five_win = five_move_win(copy.deepcopy(board), other)
-    if o_five_win:
-        return o_five_win[1]
-    #Last resort returns the highest performing move
-    return five_move_win(copy.deepcopy(board), player, True)[1]
-
 
 # Test case Should return 3
 '''
@@ -267,14 +210,6 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 2, 1, 2, 0, 0],
-        [1, 2, 1, 1, 2, 0, 0]]
 print('Move',find_a_move(board, 2, 1))
 '''
 

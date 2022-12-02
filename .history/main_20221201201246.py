@@ -154,10 +154,8 @@ def three_move_win(board, player):
     
 
 #print(three_move_win(board, 2))
-#! IDK if it works
-def five_move_win(board, player, best=False):
-    max_m = 0
-    best_m = None
+#Not done yet
+def five_move_win(board, player):
     if player == 2:
         o_player = 1
     else:
@@ -186,18 +184,11 @@ def five_move_win(board, player, best=False):
                                     break
                     if c2 == len(valid_moves(new_b3)):
                         c += 1
-                        break
-        if c >= len(valid_moves(new_b1)):
+        print(c, len(new_b1))
+        if c == len(valid_moves(new_b1)):
             return m
-        if best == True and c > max_m:
-            
-            best_m = m
-            max_m = c
-    if best == True:
-        return best_m
-
 # Test case Should return 1
-'''
+
 board = [[0, 0, 0, 0, 2, 0, 0],
         [0, 0, 0, 2, 1, 0, 0],
         [0, 0, 0, 1, 2, 0, 0],
@@ -216,15 +207,15 @@ board = [[0, 0, 0, 1, 1, 0, 0],
         [2, 2, 1, 2, 2, 1, 2]]
 print('Move',five_move_win(board, 1))
 
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0]]
+board = [[2, 0, 0, 1, 1, 0, 0],
+        [2, 1, 0, 2, 2, 0, 0],
+        [1, 2, 0, 1, 2, 0, 0],
+        [2, 1, 2, 1, 1, 0, 0],
+        [1, 2, 1, 1, 2, 1, 0],
+        [2, 2, 1, 2, 2, 1, 2]]
 print('Move',five_move_win(board, 1))
-'''
-#! We should still build a partial database and check it first.
+
+
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
@@ -246,18 +237,6 @@ def find_a_move(board, player, other):
     o_three_win = three_move_win(copy.deepcopy(board), other)
     if o_three_win:
         return o_three_win[1]
-    # Checks for five move win
-    five_win = five_move_win(copy.deepcopy(board), player)
-    if five_win:
-        return five_win[1]
-    print(4)
-    # Checks if the other player can win in five moves if we don't block
-    o_five_win = five_move_win(copy.deepcopy(board), other)
-    if o_five_win:
-        return o_five_win[1]
-    #Last resort returns the highest performing move
-    return five_move_win(copy.deepcopy(board), player, True)[1]
-
 
 # Test case Should return 3
 '''
@@ -267,14 +246,6 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 1, 1, 0, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 2, 1, 2, 0, 0],
-        [1, 2, 1, 1, 2, 0, 0]]
 print('Move',find_a_move(board, 2, 1))
 '''
 

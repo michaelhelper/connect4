@@ -224,7 +224,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0]]
 print('Move',five_move_win(board, 1))
 '''
-#! We should still build a partial database and check it first.
+#! We should still build a partial database and check it first
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win

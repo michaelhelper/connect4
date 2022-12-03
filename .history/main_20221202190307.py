@@ -264,7 +264,7 @@ def find_a_move(board, player, other):
 
 
 # Test case Should return 3
-'''
+''''''
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -288,7 +288,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]]
 print('Move',find_a_move(board, 2, 1))
-'''
+
 
 if __name__ == "__main__":
 

@@ -258,13 +258,12 @@ def find_a_move(board, player, other):
     #Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
     if possible_good_move:
-        return possible_good_move[1]
-    #If nothing else can generate a move a random move is chosen
-    return valid_moves(board)[random.randint(0,len(valid_moves(board)))][1]
+        return possible_good_move
+    return valid_moves(board)[random.randint(0,len(valid_moves))][1]
 
 
 # Test case Should return 3
-'''
+
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -288,7 +287,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]]
 print('Move',find_a_move(board, 2, 1))
-'''
+
 
 if __name__ == "__main__":
 

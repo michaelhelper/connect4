@@ -3,7 +3,6 @@ import json
 import asyncio
 import websockets
 import copy
-import random
 #import system
 
 
@@ -256,11 +255,7 @@ def find_a_move(board, player, other):
     if o_five_win:
         return o_five_win[1]
     #Last resort returns the highest performing move
-    possible_good_move = five_move_win(copy.deepcopy(board), player, True)
-    if possible_good_move:
-        return possible_good_move[1]
-    #If nothing else can generate a move a random move is chosen
-    return valid_moves(board)[random.randint(0,len(valid_moves(board)))][1]
+    bfive_move_win(copy.deepcopy(board), player, True)[1]
 
 
 # Test case Should return 3
@@ -279,14 +274,6 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 2, 2, 1, 2, 0, 0],
         [1, 2, 1, 1, 2, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
-
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0]]
 print('Move',find_a_move(board, 2, 1))
 '''
 

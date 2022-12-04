@@ -409,7 +409,7 @@ if __name__ == "__main__":
 
     uri = None
     server = 'ws://' + input('Server IP: ').strip()
-    protocol = input('Do you want to join or create a game? (j/c): ').strip().lower()
+    protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
 
     if protocol == 'c':
         uri = server + '/create'

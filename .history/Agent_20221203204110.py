@@ -252,7 +252,7 @@ print('Move',five_move_win(board, 1))
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
-    
+
     im_win = immediate_win(copy.deepcopy(board), player)
     if im_win:
         print('Immediate win')
@@ -293,7 +293,7 @@ def find_a_move(board, player, other):
     if possible_good_move and shoot_in_foot(board, possible_good_move, player, other):
         print('Possible good move')
         return possible_good_move[1]
-    
+
     # If nothing else can generate a move a random move is chosen
     L_moves = valid_moves(board)
     random.shuffle(L_moves)
@@ -303,6 +303,7 @@ def find_a_move(board, player, other):
             return m[1]
     print('Suicide move')
     return random.choice(L_moves)[1]
+
 
 """
 # Test case Should return 3
@@ -409,7 +410,7 @@ if __name__ == "__main__":
 
     uri = None
     server = 'ws://' + input('Server IP: ').strip()
-    protocol = input('Do you want to join or create a game? (j/c): ').strip().lower()
+    protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
 
     if protocol == 'c':
         uri = server + '/create'

@@ -336,7 +336,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0]]
 print('Move', find_a_move(board, 2, 1))
-
+"""
 board = [[0, 0, 0, 2, 0, 0, 0],
          [0, 0, 1, 1, 2, 0, 0],
          [0, 1, 2, 2, 2, 1, 0],
@@ -345,8 +345,6 @@ board = [[0, 0, 0, 2, 0, 0, 0],
          [1, 2, 1, 1, 2, 1, 2]]
 print('Move', find_a_move(board, 1, 2))
 print(immediate_win(copy.deepcopy(board), 1))
-"""
-
 if __name__ == "__main__":
 
     '''

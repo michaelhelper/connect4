@@ -279,7 +279,7 @@ def find_a_move(board, player, other):
     for m in L_moves:
         if shoot_in_foot(board, m[1], player, other):
             return m[1]
-    return random.choice(L_moves)[1]
+    return random.choice()
 
 
 # Test case Should return 3

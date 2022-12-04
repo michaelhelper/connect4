@@ -196,13 +196,13 @@ def five_move_win(board, player, best=False):
     if best == True:
         return best_m
 
-def shoot_in_foot(board, move, player, other):
-    up_board = update_board_pos(copy.deepcopy(board), move, player)
-    if immediate_win(copy.deepcopy(up_board), other):
-        return False
-    if three_move_win(copy.deepcopy(up_board), other):
-        return False
-    return True
+    def shoot_in_foot(board, move, player, other):
+        up_board = update_board_pos(copy.deepcopy(board), move, player)
+        if immediate_win(copy.deepcopy(up_board), other):
+            return False
+        if three_move_win(copy.deepcopy(up_board), other):
+            return False
+        return True
 
 
 
@@ -250,36 +250,32 @@ def find_a_move(board, player, other):
     print(2)
     # Checks for three move win
     three_win = three_move_win(copy.deepcopy(board), player)
-    if three_win and shoot_in_foot(board, three_win[1], player, other):
+    if three_win:
+        shoot_in_foot(board, three_win, player, other)
         return three_win[1]
     print(3)
     # Checks if the other player can win in 3 moves if we don't block
     o_three_win = three_move_win(copy.deepcopy(board), other)
-    if o_three_win and shoot_in_foot(board, o_three_win[1], player, other):
+    if o_three_win:
         return o_three_win[1]
     print(4)
     # Checks for five move win
     five_win = five_move_win(copy.deepcopy(board), player)
-    if five_win and shoot_in_foot(board, five_win[1], player, other):
+    if five_win:
         return five_win[1]
     print(5)
     # Checks if the other player can win in five moves if we don't block
     o_five_win = five_move_win(copy.deepcopy(board), other)
-    if o_five_win and shoot_in_foot(board, o_five_win[1], player, other):
+    if o_five_win:
         return o_five_win[1]
     print(6)
     #Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
-    if possible_good_move and shoot_in_foot(board, possible_good_move[1], player, other):
+    if possible_good_move:
         return possible_good_move[1]
     print(7)
     #If nothing else can generate a move a random move is chosen
-    L_moves  = valid_moves(board)
-    random.shuffle(L_moves)
-    for m in L_moves:
-        if shoot_in_foot(board, m[1], player, other):
-            return m[1]
-    return random.choice(L_moves)[1]
+    return valid_moves(board)[random.randint(0,len(valid_moves(board))-1)][1]
 
 
 # Test case Should return 3

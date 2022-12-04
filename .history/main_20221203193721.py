@@ -270,16 +270,11 @@ def find_a_move(board, player, other):
     print(6)
     #Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
-    if possible_good_move and shoot_in_foot(board, possible_good_move[1], player, other):
+    if possible_good_move:
         return possible_good_move[1]
     print(7)
     #If nothing else can generate a move a random move is chosen
-    L_moves  = valid_moves(board)
-    random.shuffle(L_moves)
-    for m in L_moves:
-        if shoot_in_foot(board, m[1], player, other):
-            return m[1]
-    return random.choice(L_moves)[1]
+    return valid_moves(board)[random.randint(0,len(valid_moves(board))-1)][1]
 
 
 # Test case Should return 3

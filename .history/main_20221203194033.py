@@ -275,11 +275,10 @@ def find_a_move(board, player, other):
     print(7)
     #If nothing else can generate a move a random move is chosen
     L_moves  = valid_moves(board)
-    random.shuffle(L_moves)
+    
     for m in L_moves:
         if shoot_in_foot(board, m[1], player, other):
             return m[1]
-    return random.choice(L_moves)[1]
 
 
 # Test case Should return 3

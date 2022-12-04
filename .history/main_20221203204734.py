@@ -301,14 +301,8 @@ def find_a_move(board, player, other):
         if shoot_in_foot(board, m, player, other):
             print('Random non foot shooting move')
             return m[1]
-
-    if five_move_win(copy.deepcopy(board), player, True):
-        print('Least bad suicide move')
-        return five_move_win(copy.deepcopy(board), player, True)
-        
-    print('Suicide move (jumps off a bridge)')
+    print('Suicide move')
     return random.choice(L_moves)[1]
-
 
 """
 # Test case Should return 3

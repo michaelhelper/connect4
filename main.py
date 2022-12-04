@@ -304,8 +304,8 @@ def find_a_move(board, player, other):
 
     if five_move_win(copy.deepcopy(board), player, True):
         print('Least bad suicide move')
-        return five_move_win(copy.deepcopy(board), player, True)
-        
+        return five_move_win(copy.deepcopy(board), player, True)[1]
+
     print('Suicide move (jumps off a bridge)')
     return random.choice(L_moves)[1]
 

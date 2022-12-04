@@ -255,51 +255,44 @@ def find_a_move(board, player, other):
     if im_win:
         print('Immediate win')
         return im_win[1]
-
     # Checks if the other player can win if we don't block
     o_im_win = immediate_win(copy.deepcopy(board), other)
     if o_im_win:
         print('Opponent immediate win')
         return o_im_win[1]
-
     # Checks for three move win
     three_win = three_move_win(copy.deepcopy(board), player)
     if three_win and shoot_in_foot(board, three_win, player, other):
-        print('Win in 3')
+        print('win in three')
         return three_win[1]
-
+    print(3)
     # Checks if the other player can win in 3 moves if we don't block
     o_three_win = three_move_win(copy.deepcopy(board), other)
     if o_three_win and shoot_in_foot(board, o_three_win, player, other):
-        print('Opponent win in 3')
         return o_three_win[1]
-
+    print(4)
     # Checks for five move win
     five_win = five_move_win(copy.deepcopy(board), player)
     if five_win and shoot_in_foot(board, five_win, player, other):
-        print('Win in 5')
         return five_win[1]
-
+    print(5)
     # Checks if the other player can win in five moves if we don't block
     o_five_win = five_move_win(copy.deepcopy(board), other)
     if o_five_win and shoot_in_foot(board, o_five_win, player, other):
-        print('Opponent win in 5')
         return o_five_win[1]
-
+    print(6)
     # Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
     if possible_good_move and shoot_in_foot(board, possible_good_move, player, other):
-        print('Possible good move')
         return possible_good_move[1]
-    
+    print(7)
     # If nothing else can generate a move a random move is chosen
     L_moves = valid_moves(board)
     random.shuffle(L_moves)
     for m in L_moves:
         if shoot_in_foot(board, m, player, other):
-            print('Random non foot shooting move')
             return m[1]
-    print('Random foot shooting move')
+    print(8)
     return random.choice(L_moves)[1]
 
 """

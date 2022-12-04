@@ -299,7 +299,7 @@ def find_a_move(board, player, other):
         if shoot_in_foot(board, m, player, other):
             print('Random non foot shooting move')
             return m[1]
-    print('Random foot shooting move')
+    print(8)
     return random.choice(L_moves)[1]
 
 """

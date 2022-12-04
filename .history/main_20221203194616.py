@@ -277,7 +277,7 @@ def find_a_move(board, player, other):
     L_moves  = valid_moves(board)
     random.shuffle(L_moves)
     for m in L_moves:
-        if shoot_in_foot(board, m, player, other):
+        if shoot_in_foot(board, m[1], player, other):
             return m[1]
     return random.choice(L_moves)[1]
 

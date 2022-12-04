@@ -213,8 +213,7 @@ def shoot_in_foot(board, move, player, other):
         return False
     if three_move_win(copy.deepcopy(up_board), other):
         return False
-    if five_move_win(copy.deepcopy(up_board), other):
-        return False
+    if five_move_win(copy.deepcopy(up_board), other)
     return True
 
 

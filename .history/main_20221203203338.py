@@ -213,8 +213,6 @@ def shoot_in_foot(board, move, player, other):
         return False
     if three_move_win(copy.deepcopy(up_board), other):
         return False
-    if five_move_win(copy.deepcopy(up_board), other):
-        return False
     return True
 
 
@@ -301,7 +299,7 @@ def find_a_move(board, player, other):
         if shoot_in_foot(board, m, player, other):
             print('Random non foot shooting move')
             return m[1]
-    print('Suicide move')
+    print('suicide ')
     return random.choice(L_moves)[1]
 
 """

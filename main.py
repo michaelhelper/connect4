@@ -4,7 +4,9 @@ import asyncio
 import websockets
 import copy
 import random
-#import system
+
+
+# import system
 
 
 def check_for_win(b):
@@ -33,7 +35,6 @@ def check_for_win(b):
     return 3
 
 
-
 def valid_moves(b):
     n_moves = []
     moves = [None, None, None, None, None, None, None]
@@ -41,8 +42,9 @@ def valid_moves(b):
         for a in range(7):
             if moves[a] is None and b[i][a] == 0:
                 moves[a] = (i, a)
-                n_moves.append((i,a))
+                n_moves.append((i, a))
     return n_moves
+
 
 # Test case
 '''
@@ -55,13 +57,14 @@ b = [[1, 0, 0, 0, 0, 0, 0],
 print(valid_moves(b))
 '''
 
-#Updates the board with a move
+
+# Updates the board with a move
 def update_board_pos(b, move, player):
     b[move[0]][move[1]] = player
     return b
 
 
-#Asks the user for a move and updates the board based on the given move
+# Asks the user for a move and updates the board based on the given move
 def user_choice(b, player):
     moves = valid_moves(b)
     p_board(b)
@@ -76,7 +79,8 @@ def user_choice(b, player):
     b = update_board_pos(b, moves[choice], player)
     return b
 
-#Prints the current game board
+
+# Prints the current game board
 def p_board(b):
     for row in b:
         for col in row:
@@ -84,12 +88,14 @@ def p_board(b):
         print('\n', end='')
     print()
 
-#Takes two positions and adds them to the board database
+
+# Takes two positions and adds them to the board database
 def add_to_db(b1, b2, board_db):
     board_db[str(b1)] = b2
     return board_db
 
-#Converts an array board to a binary board
+
+# Converts an array board to a binary board
 def board_to_binary(b):
     b_binary = ''
     m_binary = ''
@@ -105,7 +111,8 @@ def board_to_binary(b):
                 m_binary += '0'
     return (b_binary, m_binary)
 
-#Converts a binary board to an array
+
+# Converts a binary board to an array
 def binary_to_board(b):
     board = []
     for i in range(0, 36, 7):
@@ -115,12 +122,14 @@ def binary_to_board(b):
         board.append(row)
     return board
 
-#Checks if the current board position is in the database. If it is it returns the 'best' move
+
+# Checks if the current board position is in the database. If it is it returns the 'best' move
 def check_database(database, position):
     if str(position) in database:
         return database[str(position)]
 
-#!Added
+
+# !Added
 # Checks if the play can win on the next move
 def immediate_win(board, player):
     for m in valid_moves(board):
@@ -129,7 +138,8 @@ def immediate_win(board, player):
             p_board(new_b)
             return m
 
-#!Added
+
+# !Added
 # Checks if the player can win in three moves
 def three_move_win(board, player):
     if player == 2:
@@ -139,7 +149,7 @@ def three_move_win(board, player):
     # First branch
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
-        c=0
+        c = 0
         # Second branch
         for a in valid_moves(new_b):
             new_bb = update_board_pos(copy.deepcopy(new_b), a, o_player)
@@ -152,10 +162,10 @@ def three_move_win(board, player):
                         break
         if c == len(valid_moves(new_b)):
             return m
-    
 
-#print(three_move_win(board, 2))
-#! IDK if it works
+
+# print(three_move_win(board, 2))
+# ! IDK if it works
 def five_move_win(board, player, best=False):
     max_m = 0
     best_m = None
@@ -165,7 +175,7 @@ def five_move_win(board, player, best=False):
         o_player = 2
     # Creates first branch of boards
     for m in valid_moves(board):
-        c=0
+        c = 0
         new_b1 = update_board_pos(copy.deepcopy(board), m, player)
         # Creates second branch of boards
         for a in valid_moves(new_b1):
@@ -173,7 +183,7 @@ def five_move_win(board, player, best=False):
             if check_for_win(new_b2) != o_player:
                 # Creates third branch of boards
                 for i in valid_moves(new_b2):
-                    c2=0
+                    c2 = 0
                     new_b3 = update_board_pos(copy.deepcopy(new_b2), i, player)
                     # Creates fourth branch of boards
                     for o in valid_moves(new_b3):
@@ -196,6 +206,7 @@ def five_move_win(board, player, best=False):
     if best == True:
         return best_m
 
+
 def shoot_in_foot(board, move, player, other):
     up_board = update_board_pos(copy.deepcopy(board), move, player)
     if immediate_win(copy.deepcopy(up_board), other):
@@ -203,8 +214,6 @@ def shoot_in_foot(board, move, player, other):
     if three_move_win(copy.deepcopy(up_board), other):
         return False
     return True
-
-
 
 
 # Test case Should return 1
@@ -235,7 +244,9 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [2, 2, 2, 1, 0, 0, 0]]
 print('Move',five_move_win(board, 1))
 '''
-#! We should still build a partial database and check it first.
+
+
+# ! We should still build a partial database and check it first.
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
@@ -268,13 +279,13 @@ def find_a_move(board, player, other):
     if o_five_win and shoot_in_foot(board, o_five_win, player, other):
         return o_five_win[1]
     print(6)
-    #Last resort returns the highest performing move
+    # Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
     if possible_good_move and shoot_in_foot(board, possible_good_move, player, other):
         return possible_good_move[1]
     print(7)
-    #If nothing else can generate a move a random move is chosen
-    L_moves  = valid_moves(board)
+    # If nothing else can generate a move a random move is chosen
+    L_moves = valid_moves(board)
     random.shuffle(L_moves)
     for m in L_moves:
         if shoot_in_foot(board, m, player, other):
@@ -286,28 +297,28 @@ def find_a_move(board, player, other):
 # Test case Should return 3
 
 board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 0, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0],
-        [2, 2, 2, 1, 0, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 1, 1, 0, 0, 0, 0],
+         [2, 2, 2, 1, 0, 0, 0],
+         [2, 2, 2, 1, 0, 0, 0]]
+print('Move', find_a_move(board, 2, 1))
 
 board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 2, 2, 1, 2, 0, 0],
-        [1, 2, 1, 1, 2, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 2, 2, 1, 2, 0, 0],
+         [1, 2, 1, 1, 2, 0, 0]]
+print('Move', find_a_move(board, 2, 1))
 
 board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0]]
-print('Move',find_a_move(board, 2, 1))
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 0]]
+print('Move', find_a_move(board, 2, 1))
 """
 if __name__ == "__main__":
 
@@ -331,7 +342,7 @@ if __name__ == "__main__":
         #Assigns the current board to the old board
         old_board = board 
         count += 1
-        
+
     #prints the final board along with who won the game
     p_board(board)
     print('Player {} wins congrats'.format(p))
@@ -340,12 +351,13 @@ if __name__ == "__main__":
     data = open('data.txt', 'w')
     data.write(json.dumps(board_db))
     data.close()
-    
+
     '''
 
 
     async def game_loop(uri, created):
         # Test case
+        counter = 0
         board = [[0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0],
@@ -371,20 +383,23 @@ if __name__ == "__main__":
                     for move in valid_moves(board):
                         if len(command) == 2 and move[1] == int(command[1]):
                             board = update_board_pos(board, move, other)
+                            counter += 1
+                    print(counter)
                     p_board(board)
                     move = find_a_move(board, self, other)
                     for m in valid_moves(board):
                         if m[1] == move:
                             board = update_board_pos(board, m, self)
+                            counter += 1
+                            print(counter)
                             p_board(board)
                     await socket.send(f'Play:{move}')
-
 
 
     uri = None
     server = 'ws://' + input('Server IP: ').strip()
     protocol = input('Do you want to join or create a game? (j/c)').strip().lower()
-    
+
     if protocol == 'c':
         uri = server + '/create'
 

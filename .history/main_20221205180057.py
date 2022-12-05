@@ -198,8 +198,9 @@ def possible_scored_moves(board, player):
     print(moves)
     for m in moves:
         u_board = update_board_pos(copy.deepcopy(board), m[1], player)
-        if shoot_in_foot(u_board, m[1], player, opp_piece, 7):
+        if  shoot_in_foot(board, m[1], player, opp, n)
             return m[1]
+    return moves[0][1]
 
 
 # !Added
@@ -443,7 +444,7 @@ board = [[0, 0, 0, 2, 0, 0, 0],
          [1, 2, 1, 1, 2, 1, 2]]
 print('Move', find_a_move(board, 1, 2))
 print(immediate_win(copy.deepcopy(board), 1))
-"""
+
 board = [[0,0,0,1,0,0,0],
          [0,0,0,2,0,0,0],
          [0,0,0,2,0,1,2],
@@ -451,6 +452,7 @@ board = [[0,0,0,1,0,0,0],
          [0,0,2,1,0,1,2],
          [0,0,1,2,0,1,1]]
 print('Move', find_a_move(board, 1, 2))
+"""
 
 
 if __name__ == "__main__":

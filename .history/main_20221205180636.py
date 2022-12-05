@@ -196,6 +196,7 @@ def possible_scored_moves(board, player):
     opp_piece.remove(int(player))
     opp_piece = opp_piece[0]
     print(moves)
+    
     for m in moves:
         u_board = update_board_pos(copy.deepcopy(board), m[1], player)
         if shoot_in_foot(u_board, m[1], player, opp_piece, 7):

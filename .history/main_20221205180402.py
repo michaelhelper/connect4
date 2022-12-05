@@ -199,7 +199,7 @@ def possible_scored_moves(board, player):
     for m in moves:
         u_board = update_board_pos(copy.deepcopy(board), m[1], player)
         if shoot_in_foot(u_board, m[1], player, opp_piece, 7):
-            return m[1]
+            return m[1][1]
 
 
 # !Added

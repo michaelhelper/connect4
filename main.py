@@ -179,6 +179,8 @@ def score_position(board, player):
             window = [board[r+3-i][c+i] for i in range(4)]
             score += evaluate_window(window, player)
 
+    opp_piece = {1, 2} - {player}
+    score -= score_position(board, opp_piece)
     return score
 
 
@@ -434,6 +436,14 @@ board = [[0, 0, 0, 2, 0, 0, 0],
 print('Move', find_a_move(board, 1, 2))
 print(immediate_win(copy.deepcopy(board), 1))
 """
+board = [[0,0,0,1,0,0,0],
+         [0,0,0,2,0,0,0],
+         [0,0,0,2,0,1,2],
+         [0,0,1,2,0,2,1],
+         [0,0,2,1,0,1,2],
+         [0,0,1,2,0,1,1]]
+print('Move', find_a_move(board, 1, 2))
+
 
 if __name__ == "__main__":
 

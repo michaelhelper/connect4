@@ -280,8 +280,7 @@ def shoot_in_foot(board, move, player, other, n):
     return True
 
 def take_the_middle(board):
-    if sum(board[5][:3] + board[5][4:]) == 0:
-        return 3
+    if sum(board[5][:3] + board[5][4:]
     
 # Test case Should return 1
 '''
@@ -302,25 +301,21 @@ board = [[0, 0, 0, 1, 1, 0, 0],
         [1, 2, 1, 1, 2, 1, 0],
         [2, 2, 1, 2, 2, 1, 2]]
 print('Move',five_move_win(board, 1))
-
+'''
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 5, 0, 0, 0]]
+        [0, 1, 1, 0, 0, 0, 0],
+        [2, 2, 2, 1, 0, 0, 0],
+        [2, 2, 2, 5, 0, 0, 0]]
 print('Move',five_move_win(board, 1))
-'''
+take_the_middle(board)
 
 
 # ! We should still build a partial database and check it first.
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
-    middle = take_the_middle(board)
-    if middle:
-        print('Middle')
-        return middle
 
     im_win = immediate_win(copy.deepcopy(board), player)
     if im_win:
@@ -383,15 +378,9 @@ def find_a_move(board, player, other):
 
     print('Suicide move (jumps off a bridge)')
     return random.choice(L_moves)[1]
-"""
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 5, 0, 0, 0]]
-print(find_a_move(board, 1, 2))
 
+
+"""
 # Test case Should return 3
 
 board = [[0, 0, 0, 0, 0, 0, 0],

@@ -310,7 +310,7 @@ board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 5, 0, 0, 0]]
 print('Move',five_move_win(board, 1))
-'''
+
 
 
 # ! We should still build a partial database and check it first.
@@ -383,15 +383,9 @@ def find_a_move(board, player, other):
 
     print('Suicide move (jumps off a bridge)')
     return random.choice(L_moves)[1]
-"""
-board = [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 5, 0, 0, 0]]
-print(find_a_move(board, 1, 2))
 
+
+"""
 # Test case Should return 3
 
 board = [[0, 0, 0, 0, 0, 0, 0],

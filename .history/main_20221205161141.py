@@ -383,7 +383,7 @@ def find_a_move(board, player, other):
 
     print('Suicide move (jumps off a bridge)')
     return random.choice(L_moves)[1]
-"""
+""""""
 board = [[0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],

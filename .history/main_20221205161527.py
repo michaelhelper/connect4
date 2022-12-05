@@ -280,7 +280,7 @@ def shoot_in_foot(board, move, player, other, n):
     return True
 
 def take_the_middle(board):
-    if sum(board[5][:3] + board[5][4:]) == 0 or board[5][3] == 0:
+    if sum(board[5][:3] + board[5][4:]) == 0 or :
         return 3
     
 # Test case Should return 1

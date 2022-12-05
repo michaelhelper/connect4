@@ -371,12 +371,12 @@ def find_a_move(board, player, other):
         return o_five_win[1]
 
     #Checks for a move based on rating
-    '''
+    ''''''
     scored_move = possible_scored_moves(copy.deepcopy(board), player)
     if scored_move and shoot_in_foot(board, scored_move, player, other, 7):
         print('Possible scored move')
         return scored_move[1]
-    '''
+
     # Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
     if possible_good_move and shoot_in_foot(board, possible_good_move, player, other, 7):

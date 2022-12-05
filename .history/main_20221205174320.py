@@ -22,13 +22,13 @@ def check_for_win(b):
             if b[i][a] != 0 and b[i][a] == b[i + 1][a] == b[i + 2][a] == b[i + 3][a]:
                 return b[i][a]
     # checks for diagonal wins
-    for a in range(5, 2, -1):
+    for a in range(3):
         for i in range(4):
             if b[a][i] != 0 and b[a][i] == b[a - 1][i + 1] == b[a - 2][i + 2] == b[a - 3][i + 3]:
                 return b[a][i]
-    for a in range(3):
+    for a in range(5, 2, -1):
         for i in range(4):
-            if b[a][i] != 0 and b[a][i] == b[a + 1][i + 1] == b[a + 2][i + 2] == b[a + 3][i + 3]:
+            if b[a][i] != 0 and b[a][i] == b[a + 1][i + 1] == b[a - 2][i + 2] == b[a - 3][i + 3]:
                 return b[a][i]
     return 3
 

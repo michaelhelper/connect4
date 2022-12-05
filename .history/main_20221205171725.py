@@ -22,13 +22,13 @@ def check_for_win(b):
             if b[i][a] != 0 and b[i][a] == b[i + 1][a] == b[i + 2][a] == b[i + 3][a]:
                 return b[i][a]
     # checks for diagonal wins
-    for a in range(5, 2, -1):
-        for i in range(4):
-            if b[a][i] != 0 and b[a][i] == b[a - 1][i + 1] == b[a - 2][i + 2] == b[a - 3][i + 3]:
-                return b[a][i]
     for a in range(3):
         for i in range(4):
             if b[a][i] != 0 and b[a][i] == b[a + 1][i + 1] == b[a + 2][i + 2] == b[a + 3][i + 3]:
+                return b[a][i]
+    for a in range(5, 2, -1):
+        for i in range(3):
+            if b[a][i] != 0 and b[a][i] == b[a - 1][i + 1] == b[a - 2][i + 2] == b[a - 3][i + 3]:
                 return b[a][i]
     return 3
 
@@ -201,9 +201,8 @@ def possible_scored_moves(board, player):
 def immediate_win(board, player):
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
-        print('New board', player)
+        print('New board')
         p_board(new_b)
-        print(check_for_win(new_b))
         if check_for_win(new_b) == player:
             print('This wins')
             p_board(new_b)
@@ -282,8 +281,8 @@ def shoot_in_foot(board, move, player, other, n):
     up_board = update_board_pos(copy.deepcopy(board), move, player)
     print('board updated')
     p_board(up_board)
+    print('other,')
     if immediate_win(copy.deepcopy(up_board), other):
-        print('Tester')
         return False
     if three_move_win(copy.deepcopy(up_board), other) and n > 3:
         return False

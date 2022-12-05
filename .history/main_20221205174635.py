@@ -28,6 +28,7 @@ def check_for_win(b):
                 return b[a][i]
     for a in range(3):
         for i in range(4):
+            print(i)
             if b[a][i] != 0 and b[a][i] == b[a + 1][i + 1] == b[a + 2][i + 2] == b[a + 3][i + 3]:
                 return b[a][i]
     return 3

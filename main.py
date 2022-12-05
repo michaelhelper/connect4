@@ -122,7 +122,7 @@ def binary_to_board(b):
         board.append(row)
     return board
 
-
+#newcomment
 # Checks if the current board position is in the database. If it is it returns the 'best' move
 def check_database(database, position):
     if str(position) in database:

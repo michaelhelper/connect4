@@ -200,17 +200,7 @@ def possible_scored_moves(board, player):
         u_board = update_board_pos(copy.deepcopy(board), m[1], player)
         if not shoot_in_foot(u_board, m[1], player, opp_piece, 7):
             moves.remove(m)
-    best_moves = [moves[0]]
-    for m in moves:
-        if m[0] == best_moves[0][0]:
-            best_moves.append(m)
-    if len(best_moves) > 1:
-        x = five_move_win(copy.deepcopy(board), player, True)
-        for m in best_moves:
-            if m[1] == x:
-                return m[1]
-    return random.choice(best_moves)[1]
-        
+    best_moves = [moves]
 
 
 # !Added
@@ -386,7 +376,8 @@ def find_a_move(board, player, other):
     #Checks for a move based on rating
     
     scored_move = possible_scored_moves(copy.deepcopy(board), player)
-    if scored_move:
+    if scored_move and shoot_in_foot(board, scored_move, player, other, 7):
+        print(shoot_in_foot(board, scored_move, player, other, 7))
         print('Possible scored move')
         return scored_move[1]
     

@@ -209,7 +209,7 @@ def possible_scored_moves(board, player):
         for m in best_moves:
             if m[1] == x:
                 return m[1]
-    return random.choice(best_moves)[1]
+    return best_moves[0][1
         
 
 
@@ -386,7 +386,8 @@ def find_a_move(board, player, other):
     #Checks for a move based on rating
     
     scored_move = possible_scored_moves(copy.deepcopy(board), player)
-    if scored_move:
+    if scored_move and shoot_in_foot(board, scored_move, player, other, 7):
+        print(shoot_in_foot(board, scored_move, player, other, 7))
         print('Possible scored move')
         return scored_move[1]
     

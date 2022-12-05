@@ -209,7 +209,7 @@ def possible_scored_moves(board, player):
         for m in best_moves:
             if m[1] == x:
                 return m[1]
-    return random.choice(best_moves)[1]
+    return random.select(best_moves)[1]
         
 
 

@@ -181,9 +181,7 @@ def score_position(board, player):
             window = [board[r+3-i][c+i] for i in range(4)]
             score += evaluate_window(window, player)
 
-    opp_piece = [1, 2]
-    opp_piece.remove(int(player))
-    opp_piece = opp_piece[0]
+    opp_piece = {1, 2} - {player}
     score -= score_position(board, opp_piece)
     return score
 

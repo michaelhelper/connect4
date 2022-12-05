@@ -131,9 +131,7 @@ def check_database(database, position):
 
 def evaluate_window(window, player):
     score = 0
-    opp_piece = [1, 2]
-    opp_piece.remove(int(player))
-    opp_piece = opp_piece[0]
+    opp_piece = {1, 2} - {player}
 
     if window.count(player) == 4:
         score += 100
@@ -181,9 +179,7 @@ def score_position(board, player):
             window = [board[r+3-i][c+i] for i in range(4)]
             score += evaluate_window(window, player)
 
-    opp_piece = [1, 2]
-    opp_piece.remove(int(player))
-    opp_piece = opp_piece[0]
+    opp_piece = {1, 2} - {player}
     score -= score_position(board, opp_piece)
     return score
 
@@ -353,6 +349,7 @@ def find_a_move(board, player, other):
         return three_win[1]
 
     # Checks if the other player can win in 3 moves if we don't block
+    print(three_move_win(copy.deepcopy(board), other))
     o_three_win = three_move_win(copy.deepcopy(board), other)
     if o_three_win and shoot_in_foot(board, o_three_win, player, other, 3):
         print('Opponent win in 3')

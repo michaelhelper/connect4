@@ -485,7 +485,7 @@ if __name__ == "__main__":
             while True:
                 message = await socket.recv()
                 print(message, flush=True)
-                time.sleep(1)
+                sl
                 command = message.split(':')
 
                 if (command[0] == 'ID'):

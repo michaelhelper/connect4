@@ -246,3 +246,259 @@ ACK
 WIN
 
 
+
+
+Important game 2
+
+Server IP: localhost:5001
+Do you want to join or create a game? (j/c): c
+ID:1C23B5
+1C23B5
+GAMESTART
+0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+
+[(0, (5, 6)), (0, (5, 5)), (0, (5, 4)), (0, (5, 3)), (0, (5, 2)), (0, (5, 1)), (0, (5, 0))]
+Possible scored move
+1
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 1
+
+ACK
+OPPONENT:3
+2
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 2 0 0 1
+
+[(0, (5, 5)), (0, (5, 4)), (0, (5, 2)), (0, (5, 1)), (0, (5, 0)), (0, (4, 6)), (0, (4, 3))]
+Possible scored move
+3
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 2 0 1 1
+
+ACK
+OPPONENT:6
+4
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 2 0 1 1
+
+[(3, (3, 6)), (2, (4, 5)), (0, (5, 4)), (0, (5, 2)), (0, (5, 1)), (0, (5, 0)), (0, (4, 3))]
+Possible scored move
+5
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 1
+0 0 0 0 0 0 2
+0 0 0 2 0 1 1
+
+ACK
+OPPONENT:6
+6
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 0 0 0 1
+0 0 0 0 0 0 2
+0 0 0 2 0 1 1
+
+[(5, (4, 5)), (3, (5, 4)), (3, (5, 2)), (3, (5, 1)), (3, (5, 0)), (3, (4, 3)), (3, (1, 6))]
+Possible scored move
+7
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 0 0 0 1
+0 0 0 0 0 1 2
+0 0 0 2 0 1 1
+
+ACK
+OPPONENT:5
+8
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 0 0 2 1
+0 0 0 0 0 1 2
+0 0 0 2 0 1 1
+
+[(7, (4, 3)), (7, (2, 5)), (5, (5, 4)), (5, (5, 2)), (5, (5, 1)), (5, (5, 0)), (5, (1, 6))]
+Possible scored move
+9
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 0 0 2 1
+0 0 0 1 0 1 2
+0 0 0 2 0 1 1
+
+ACK
+OPPONENT:3
+10
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 0 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 0 2 0 1 1
+
+[(13, (2, 5)), (12, (2, 3)), (9, (5, 4)), (9, (5, 2)), (9, (1, 6)), (7, (5, 1)), (7, (5, 0))]
+Possible scored move
+11
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 0 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 0 2 0 1 1
+
+ACK
+OPPONENT:3
+12
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 0 2 0 1 1
+
+[(14, (5, 2)), (14, (1, 6)), (13, (5, 4)), (11, (5, 1)), (11, (5, 0)), (11, (1, 5)), (11, (1, 3))]
+Possible scored move
+13
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 1 2 0 1 1
+
+ACK
+OPPONENT:3
+14
+0 0 0 0 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 1 2 0 1 1
+
+0 0 0 2 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 1 2 0 1 1
+
+Opponent immediate win
+15
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 0 1 0 1 2
+0 0 1 2 0 1 1
+
+ACK
+OPPONENT:2
+16
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 0 2 0 2 1
+0 0 2 1 0 1 2
+0 0 1 2 0 1 1
+
+[(22, (3, 2)), (18, (1, 6)), (17, (5, 4)), (15, (5, 1)), (15, (5, 0)), (15, (1, 5))]
+Possible scored move
+17
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 0 2 1
+0 0 2 1 0 1 2
+0 0 1 2 0 1 1
+
+ACK
+OPPONENT:1
+18
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 0 2 1
+0 0 2 1 0 1 2
+0 2 1 2 0 1 1
+
+[(25, (5, 4)), (25, (1, 6)), (22, (5, 0)), (22, (4, 1)), (22, (2, 2)), (22, (1, 5))]
+Possible scored move
+19
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 0 2 1
+0 0 2 1 0 1 2
+0 2 1 2 1 1 1
+
+ACK
+Traceback (most recent call last):
+  File "/Users/edenbendheim/Dropbox/connect4/main.py", line 505, in <module>
+    asyncio.run(game_loop(uri, protocol == 'c'))
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/edenbendheim/Dropbox/connect4/main.py", line 491, in game_loop
+    await socket.send(f'Play:{move}')
+  File "/Library/Python/3.9/site-packages/websockets/legacy/protocol.py", line 635, in send
+    await self.ensure_open()
+  File "/Library/Python/3.9/site-packages/websockets/legacy/protocol.py", line 953, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedOK: received 1000 (OK); then sent 1000 (OK)
+OPPONENT:4
+20
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 0 2 1
+0 0 2 1 2 1 2
+0 2 1 2 1 1 1
+
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 1 2 1
+0 0 2 1 2 1 2
+0 2 1 2 1 1 1
+
+Immediate win
+21
+0 0 0 1 0 0 0
+0 0 0 2 0 0 0
+0 0 0 2 0 1 2
+0 0 1 2 1 2 1
+0 0 2 1 2 1 2
+0 2 1 2 1 1 1
+
+
+
+

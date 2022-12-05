@@ -128,15 +128,15 @@ def check_database(database, position):
     if str(position) in database:
         return database[str(position)]
 
-def evaluate_window(window, piece):
+def evaluate_window(window, player):
     score = 0
-    opp_piece = {1, 2} - {piece}
+    opp_piece = {1, 2} - {player}
 
-    if window.count(piece) == 4:
+    if window.count(player) == 4:
         score += 100
-    elif window.count(piece) == 3 and window.count(0) == 1:
+    elif window.count(player) == 3 and window.count(0) == 1:
         score += 5
-    elif window.count(piece) == 2 and window.count(0) == 2:
+    elif window.count(player) == 2 and window.count(0) == 2:
         score += 2
 
     if window.count(opp_piece) == 3 and window.count(0) == 1:
@@ -145,12 +145,12 @@ def evaluate_window(window, piece):
     return score
 
 
-def score_position(board, piece):
+def score_position(board, player):
     score = 0
 
     ## Score center column
     center_array = [int(i) for i in list(board[3])]
-    center_count = center_array.count(piece)
+    center_count = center_array.count(player)
     score += center_count * 3
 
     ## Score Horizontal
@@ -158,34 +158,34 @@ def score_position(board, piece):
         row_array = [int(i) for i in list(board[r])]
         for c in range(7-3):
             window = row_array[c:c+4]
-            score += evaluate_window(window, piece)
+            score += evaluate_window(window, player)
 
     ## Score Vertical
     for c in range(7):
         col_array = [list(board[i][c] for i in range(6))]
         for r in range(6-3):
             window = col_array[r:r+4]
-            score += evaluate_window(window, piece)
+            score += evaluate_window(window, player)
 
     ## Score posiive sloped diagonal
     for r in range(6-3):
         for c in range(7-3):
             window = [board[r+i][c+i] for i in range(4)]
-            score += evaluate_window(window, piece)
+            score += evaluate_window(window, player)
 
     for r in range(6-3):
         for c in range(7-3):
             window = [board[r+3-i][c+i] for i in range(4)]
-            score += evaluate_window(window, piece)
+            score += evaluate_window(window, player)
 
     return score
 
 
-def possible_scored_moves(board, piece):
+def possible_scored_moves(board, player):
     moves = []
     for m in valid_moves(board):
-        new_b = update_board_pos(copy.deepcopy(board), m, piece)
-        moves.append((score_position(new_b, piece), m))
+        new_b = update_board_pos(copy.deepcopy(board), m, player)
+        moves.append((score_position(new_b, player), m))
     moves.sort(reverse=True)
     print(moves)
     return moves[0][1]
@@ -351,7 +351,7 @@ def find_a_move(board, player, other):
         return o_five_win[1]
 
     #Checks for a move based on rating
-    scored_move = possible_scored_moves(board, player)
+    scored_move = possible_scored_moves(copy.deepcopy(board), player)
     if scored_move and shoot_in_foot(board, scored_move, player, other, 7):
         print('Possible scored move')
         return scored_move[1]

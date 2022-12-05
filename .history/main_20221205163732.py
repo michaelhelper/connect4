@@ -288,7 +288,7 @@ def take_the_middle(board):
             if board[i][3] != 0:
                 count += 1
         if count > 0:
-            return 3
+        return 3
     
 # Test case Should return 1
 '''

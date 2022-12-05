@@ -284,11 +284,8 @@ def shoot_in_foot(board, move, player, other, n):
 def take_the_middle(board):
     if sum(board[5][:3] + board[5][4:]) == 0 or board[5][3] == 0:
         count = 0
-        for i in range(6):
-            if board[i][3] != 0:
-                count += 1
-        if count > 0:
-            return 3
+        for 
+        return 3
     
 # Test case Should return 1
 '''

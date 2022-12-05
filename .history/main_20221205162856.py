@@ -331,7 +331,7 @@ def find_a_move(board, player, other):
 
     # Checks if the other player can win if we don't block
     o_im_win = immediate_win(copy.deepcopy(board), other)
-    if o_im_win and shoot_in_foot(board, o_im_win, player, other, 3):
+    if o_im_win and shoot_in_foot(board, o, player, other, 3):
         print('Opponent immediate win')
         return o_im_win[1]
 

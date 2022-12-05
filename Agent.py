@@ -207,13 +207,13 @@ def five_move_win(board, player, best=False):
         return best_m
 
 
-def shoot_in_foot(board, move, player, other):
+def shoot_in_foot(board, move, player, other, n):
     up_board = update_board_pos(copy.deepcopy(board), move, player)
     if immediate_win(copy.deepcopy(up_board), other):
         return False
-    if three_move_win(copy.deepcopy(up_board), other):
+    if three_move_win(copy.deepcopy(up_board), other) and n > 3:
         return False
-    if five_move_win(copy.deepcopy(up_board), other):
+    if five_move_win(copy.deepcopy(up_board), other) and n > 5:
         return False
     return True
 
@@ -252,7 +252,7 @@ print('Move',five_move_win(board, 1))
 # Calls multiple method to try and find the best move
 def find_a_move(board, player, other):
     # Checks for immediate win
-    
+
     im_win = immediate_win(copy.deepcopy(board), player)
     if im_win:
         print('Immediate win')
@@ -266,39 +266,39 @@ def find_a_move(board, player, other):
 
     # Checks for three move win
     three_win = three_move_win(copy.deepcopy(board), player)
-    if three_win and shoot_in_foot(board, three_win, player, other):
+    if three_win and shoot_in_foot(board, three_win, player, other, 3):
         print('Win in 3')
         return three_win[1]
 
     # Checks if the other player can win in 3 moves if we don't block
     o_three_win = three_move_win(copy.deepcopy(board), other)
-    if o_three_win and shoot_in_foot(board, o_three_win, player, other):
+    if o_three_win and shoot_in_foot(board, o_three_win, player, other, 3):
         print('Opponent win in 3')
         return o_three_win[1]
 
     # Checks for five move win
     five_win = five_move_win(copy.deepcopy(board), player)
-    if five_win and shoot_in_foot(board, five_win, player, other):
+    if five_win and shoot_in_foot(board, five_win, player, other, 5):
         print('Win in 5')
         return five_win[1]
 
     # Checks if the other player can win in five moves if we don't block
     o_five_win = five_move_win(copy.deepcopy(board), other)
-    if o_five_win and shoot_in_foot(board, o_five_win, player, other):
+    if o_five_win and shoot_in_foot(board, o_five_win, player, other, 5):
         print('Opponent win in 5')
         return o_five_win[1]
 
     # Last resort returns the highest performing move
     possible_good_move = five_move_win(copy.deepcopy(board), player, True)
-    if possible_good_move and shoot_in_foot(board, possible_good_move, player, other):
+    if possible_good_move and shoot_in_foot(board, possible_good_move, player, other, 7):
         print('Possible good move')
         return possible_good_move[1]
-    
+
     # If nothing else can generate a move a random move is chosen
     L_moves = valid_moves(board)
     random.shuffle(L_moves)
     for m in L_moves:
-        if shoot_in_foot(board, m, player, other):
+        if shoot_in_foot(board, m, player, other, 7):
             print('Random non foot shooting move')
             return m[1]
 

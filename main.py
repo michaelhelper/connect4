@@ -148,7 +148,7 @@ def evaluate_window(window, player):
     return score
 
 
-def score_position(board, player):
+def score_position(board, player, opponent=False):
     score = 0
 
     ## Score center column
@@ -184,7 +184,8 @@ def score_position(board, player):
     opp_piece = [1, 2]
     opp_piece.remove(int(player))
     opp_piece = opp_piece[0]
-    score -= score_position(board, opp_piece)
+    if not opponent:
+        score -= score_position(board, opp_piece, opponent = True)
     return score
 
 

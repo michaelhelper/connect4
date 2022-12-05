@@ -275,6 +275,7 @@ def five_move_win(board, player, best=False):
 
 def shoot_in_foot(board, move, player, other, n):
     up_board = update_board_pos(copy.deepcopy(board), move, player)
+    p_board(up_board)
     if immediate_win(copy.deepcopy(up_board), other):
         return False
     if three_move_win(copy.deepcopy(up_board), other) and n > 3:
@@ -437,7 +438,7 @@ board = [[0, 0, 0, 2, 0, 0, 0],
          [1, 2, 1, 1, 2, 1, 2]]
 print('Move', find_a_move(board, 1, 2))
 print(immediate_win(copy.deepcopy(board), 1))
-
+"""
 board = [[0,0,0,1,0,0,0],
          [0,0,0,2,0,0,0],
          [0,0,0,2,0,1,2],
@@ -445,7 +446,7 @@ board = [[0,0,0,1,0,0,0],
          [0,0,2,1,0,1,2],
          [0,0,1,2,0,1,1]]
 print('Move', find_a_move(board, 1, 2))
-"""
+print(check_for_win(board))
 
 
 if __name__ == "__main__":

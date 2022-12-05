@@ -201,6 +201,9 @@ def possible_scored_moves(board, player):
 def immediate_win(board, player):
     for m in valid_moves(board):
         new_b = update_board_pos(copy.deepcopy(board), m, player)
+        print('New board', player)
+        p_board(new_b)
+        print(check_for_win(new_b))
         if check_for_win(new_b) == player:
             return m
 
@@ -275,6 +278,7 @@ def five_move_win(board, player, best=False):
 
 def shoot_in_foot(board, move, player, other, n):
     up_board = update_board_pos(copy.deepcopy(board), move, player)
+    p_board(up_board)
     if immediate_win(copy.deepcopy(up_board), other):
         return False
     if three_move_win(copy.deepcopy(up_board), other) and n > 3:
@@ -445,8 +449,8 @@ board = [[0,0,0,1,0,0,0],
          [0,0,2,1,0,1,2],
          [0,0,1,2,0,1,1]]
 print('Move', find_a_move(board, 1, 2))
+print(check_for_win(board))
 """
-
 
 if __name__ == "__main__":
 

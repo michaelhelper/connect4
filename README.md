@@ -8,4 +8,10 @@ If you would like to use it, run the server and the client in the "mindsmachines
 Then when you use the program, you can either create a game and it will give you the ID or you can join a game with 
 a randomly generated ID.
 
+Eventually, we would increase the depth of the program, allowing it to look more moves into the future. In order to 
+increase this depth, we would need to implement a more efficient data structure to store the Connect-4 board positions, 
+and use a technique called alpha beta pruning which would disregard a branch of the move tree if the branch gives us an 
+objectively losing position. We could also utilize a transposition table which would store all the board positions 
+generated and save us the time of recreating board positions we previously generated.
+
 Special thanks to exoRift for making the client!

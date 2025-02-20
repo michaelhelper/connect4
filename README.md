@@ -13,4 +13,4 @@ and use a technique called alpha beta pruning which would disregard a branch of 
 objectively losing position. We could also utilize a transposition table which would store all the board positions 
 generated and save us the time of recreating board positions we previously generated.
 
-Special thanks to exoRift for making the client!
+Special thanks to exoRift for making the client: https://github.com/exoRift/mindsmachines-connect4?tab=readme-ov-file

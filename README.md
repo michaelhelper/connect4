@@ -1,5 +1,4 @@
 # connect4
-#Put comments here
 
 This is our connect 4 project that we worked on for our minds and machines class. it uses basic look ahead functionality 
 and minor minimaxing, along with a few other things to make it work. It is not perfect, but it is a good start.
